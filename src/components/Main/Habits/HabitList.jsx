@@ -15,6 +15,7 @@ export const HabitList = () => {
           description={item.description}
           allDays={item.allDays}
           currentDays={item.currentDays}
+          progressBarPercent={item.progressBarPercent}
           check={item.check}
         />
       ))}
