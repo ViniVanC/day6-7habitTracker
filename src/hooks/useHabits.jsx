@@ -88,7 +88,24 @@ export const HabitsProvider = ({ children }) => {
     );
   };
 
-  const deleteHabitsItem = (id) => {};
+  const createHabitsItem = () => {
+    setHabitsList([
+      ...habitsList,
+      {
+        id: v4(),
+        title: "title",
+        description: "",
+        allDays: 30,
+        currentDays: 0,
+        progressBarPercent: 0,
+        check: false,
+      },
+    ]);
+  };
+
+  const deleteHabitsItem = (id) => {
+    setHabitsList(habitsList.filter((item) => item.id !== id));
+  };
 
   function remind() {
     setHabitsList(
@@ -158,6 +175,7 @@ export const HabitsProvider = ({ children }) => {
         habitsList,
         setHabitsList,
         handleCheck,
+        createHabitsItem,
         deleteHabitsItem,
       }}
     >
