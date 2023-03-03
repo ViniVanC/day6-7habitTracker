@@ -6,7 +6,7 @@ export const HabitList = () => {
   const { habitsList } = useHabits();
 
   return (
-    <ul>
+    <ul className="flex items-center gap-[20px] flex-wrap">
       {habitsList.map((item) => (
         <HabitItem
           key={item.id}
