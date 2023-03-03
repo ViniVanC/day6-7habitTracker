@@ -11,6 +11,7 @@ export const HabitItem = ({
   currentDays,
   progressBarPercent,
   check,
+  markedDays,
 }) => {
   const { handleCheck } = useHabits();
 

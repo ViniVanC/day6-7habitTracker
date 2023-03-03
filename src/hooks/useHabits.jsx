@@ -14,7 +14,15 @@ export const HabitsProvider = ({ children }) => {
       currentDays: 2,
       progressBarPercent: 0,
       check: true,
-      timer: true,
+    },
+    {
+      id: v4(),
+      title: "title",
+      description: "",
+      allDays: 30,
+      currentDays: 16,
+      progressBarPercent: 0,
+      check: false,
     },
     {
       id: v4(),
@@ -24,7 +32,6 @@ export const HabitsProvider = ({ children }) => {
       currentDays: 5,
       progressBarPercent: 0,
       check: false,
-      timer: true,
     },
     {
       id: v4(),
@@ -34,9 +41,15 @@ export const HabitsProvider = ({ children }) => {
       currentDays: 0,
       progressBarPercent: 0,
       check: false,
-      timer: true,
     },
   ]);
+  const [countdown, setCountdown] = useState({
+    hours: 19,
+    minutes: 35,
+    seconds: 0,
+  });
+
+  const timeStop = { hours: 20, minutes: 39, seconds: 10 };
 
   useEffect(() => {
     setHabitsList(
@@ -50,9 +63,9 @@ export const HabitsProvider = ({ children }) => {
     );
   }, []);
 
-  const calcPercentagesInTheProgressBar = (allDays, currentDays) => {
+  function calcPercentagesInTheProgressBar(allDays, currentDays) {
     return Math.floor((100 / allDays) * currentDays);
-  };
+  }
 
   const handleCheck = (id) => {
     setHabitsList(
@@ -62,11 +75,9 @@ export const HabitsProvider = ({ children }) => {
               ...item,
               check: !item.check,
               currentDays:
-                item.timer === true
-                  ? item.check === true
-                    ? (item.currentDays -= 1)
-                    : (item.currentDays += 1)
-                  : item.currentDays,
+                item.check === true
+                  ? (item.currentDays -= 1)
+                  : (item.currentDays += 1),
               progressBarPercent: calcPercentagesInTheProgressBar(
                 item.allDays,
                 item.currentDays
@@ -79,10 +90,73 @@ export const HabitsProvider = ({ children }) => {
 
   const deleteHabitsItem = (id) => {};
 
+  function remind() {
+    setHabitsList(
+      habitsList.map((item) =>
+        item.check === true
+          ? {
+              ...item,
+              check: false,
+              currentDays: item.currentDays,
+              progressBarPercent: calcPercentagesInTheProgressBar(
+                item.allDays,
+                item.currentDays
+              ),
+            }
+          : {
+              ...item,
+              progressBarPercent: calcPercentagesInTheProgressBar(
+                item.allDays,
+                item.currentDays
+              ),
+            }
+      )
+    );
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Отримуємо поточний час
+      const now = new Date();
+
+      // Встановлюємо час на опівночі
+      const midnight = new Date(now);
+      midnight.setHours(23, 59, 59, 59);
+
+      // Обчислюємо залишок часу
+      const remainingTime = midnight.getTime() - now.getTime();
+      const remainingSeconds = Math.floor(remainingTime / 1000);
+      const remainingMinutes = Math.floor(remainingSeconds / 60);
+      const remainingHours = Math.floor(remainingMinutes / 60);
+
+      // Оновлюємо стан компонента
+      setCountdown({
+        hours: remainingHours,
+        minutes: remainingMinutes % 60,
+        seconds: remainingSeconds % 60,
+      });
+
+      if (
+        now.getHours() === timeStop.hours &&
+        now.getMinutes() === timeStop.minutes &&
+        now.getSeconds() === timeStop.seconds
+      ) {
+        // Викликаємо функцію нагадування
+        remind();
+        console.log("ok");
+      } else {
+        console.log(0);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [habitsList]);
+
   return (
     <HabitsContext.Provider
       value={{
+        countdown,
         habitsList,
+        setHabitsList,
         handleCheck,
         deleteHabitsItem,
       }}

@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useHabits } from "../../hooks/useHabits";
 
 export const Timer = () => {
-  return <div className="text-[20px] font-bold">00:01</div>;
+  const { countdown } = useHabits();
+  return (
+    <div className="text-[20px] font-bold">
+      {countdown.hours}:{countdown.minutes}:{countdown.seconds}
+    </div>
+  );
 };
