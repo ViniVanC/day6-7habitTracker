@@ -5,44 +5,46 @@ const HabitsContext = createContext();
 export const useHabits = () => useContext(HabitsContext);
 
 export const HabitsProvider = ({ children }) => {
-  const [habitsList, setHabitsList] = useState([
-    {
-      id: v4(),
-      title: "title",
-      description: "",
-      allDays: 30,
-      currentDays: 2,
-      progressBarPercent: 0,
-      check: true,
-    },
-    {
-      id: v4(),
-      title: "title",
-      description: "",
-      allDays: 30,
-      currentDays: 16,
-      progressBarPercent: 0,
-      check: false,
-    },
-    {
-      id: v4(),
-      title: "title",
-      description: "",
-      allDays: 30,
-      currentDays: 5,
-      progressBarPercent: 0,
-      check: false,
-    },
-    {
-      id: v4(),
-      title: "title",
-      description: "",
-      allDays: 30,
-      currentDays: 0,
-      progressBarPercent: 0,
-      check: false,
-    },
-  ]);
+  const [habitsList, setHabitsList] = useState(
+    JSON.parse(localStorage.getItem("day6-habit-tracker")) || [
+      {
+        id: v4(),
+        title: "title",
+        description: "",
+        allDays: 30,
+        currentDays: 2,
+        progressBarPercent: 0,
+        check: true,
+      },
+      {
+        id: v4(),
+        title: "title",
+        description: "",
+        allDays: 30,
+        currentDays: 16,
+        progressBarPercent: 0,
+        check: false,
+      },
+      {
+        id: v4(),
+        title: "title",
+        description: "",
+        allDays: 30,
+        currentDays: 5,
+        progressBarPercent: 0,
+        check: false,
+      },
+      {
+        id: v4(),
+        title: "title",
+        description: "",
+        allDays: 30,
+        currentDays: 0,
+        progressBarPercent: 0,
+        check: false,
+      },
+    ]
+  );
   const [countdown, setCountdown] = useState({
     hours: 0,
     minutes: 0,
@@ -50,6 +52,10 @@ export const HabitsProvider = ({ children }) => {
   });
 
   const timeStop = { hours: 23, minutes: 59, seconds: 59 };
+
+  useEffect(() => {
+    localStorage.setItem("day6-habit-tracker", JSON.stringify(habitsList));
+  }, [habitsList]);
 
   useEffect(() => {
     setHabitsList(
