@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
 
+$blue-dianne: #264653;
+$jungle-green: #2a9d8f;
+$rob-roy: #e9c46a;
+$sandy-brown: #f4a261;
+$burnt-sienna: #e76f51;
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,5 +23,15 @@ a {
 
   &:hover {
     text-decoration: none;
+  }
+}
+
+.CircularProgressbar {
+  .CircularProgressbar-path {
+    stroke: $blue-dianne;
+  }
+
+  .CircularProgressbar-text {
+    fill: $blue-dianne;
   }
 }
