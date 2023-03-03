@@ -44,12 +44,12 @@ export const HabitsProvider = ({ children }) => {
     },
   ]);
   const [countdown, setCountdown] = useState({
-    hours: 19,
-    minutes: 35,
+    hours: 0,
+    minutes: 0,
     seconds: 0,
   });
 
-  const timeStop = { hours: 20, minutes: 39, seconds: 10 };
+  const timeStop = { hours: 23, minutes: 59, seconds: 59 };
 
   useEffect(() => {
     setHabitsList(
@@ -138,7 +138,7 @@ export const HabitsProvider = ({ children }) => {
 
       // Встановлюємо час на опівночі
       const midnight = new Date(now);
-      midnight.setHours(23, 59, 59, 59);
+      midnight.setHours(24, 0, 0, 0);
 
       // Обчислюємо залишок часу
       const remainingTime = midnight.getTime() - now.getTime();
@@ -160,9 +160,6 @@ export const HabitsProvider = ({ children }) => {
       ) {
         // Викликаємо функцію нагадування
         remind();
-        console.log("ok");
-      } else {
-        console.log(0);
       }
     }, 1000);
     return () => clearInterval(interval);
