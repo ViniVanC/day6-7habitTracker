@@ -1,10 +1,8 @@
 import React from "react";
-import { useHabits } from "../../../hooks/useHabits";
-import { useVars } from "../../../hooks/useVars";
+import { useVars } from "../../hooks/useVars";
 import { HiXMark } from "react-icons/hi2";
 
 export const CreateHabitItem = ({ submit, close }) => {
-  const { createHabitsItem } = useHabits();
   const { newHabitItem, setNewHabitItem, setOpenCreateHabitsItemBubble } =
     useVars();
   return (
@@ -55,6 +53,7 @@ export const CreateHabitItem = ({ submit, close }) => {
           Add
         </button>
       </form>
+      {/* overlay */}
       <div
         className="absolute top-0 left-0 z-[59] bg-black/30 w-[100vw] h-[100vh] backdrop-blur-md"
         onClick={setOpenCreateHabitsItemBubble}

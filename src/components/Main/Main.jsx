@@ -3,7 +3,7 @@ import { FaGripHorizontal, FaGripLines, FaPlus } from "react-icons/fa";
 import { useHabits } from "../../hooks/useHabits";
 import { useVars } from "../../hooks/useVars";
 import { Container } from "../Container";
-import { CreateHabitItem } from "./Habits/CreateHabitItem";
+import { CreateHabitItem } from "./CreateHabitItem";
 import { HabitList } from "./Habits/HabitList";
 
 export const Main = () => {

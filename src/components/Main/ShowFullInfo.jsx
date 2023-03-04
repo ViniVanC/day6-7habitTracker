@@ -1,6 +1,6 @@
 import React from "react";
 import { HiXMark } from "react-icons/hi2";
-import { useHabits } from "../../../hooks/useHabits";
+import { useHabits } from "../../hooks/useHabits";
 
 export const ShowFullInfo = ({
   id,
