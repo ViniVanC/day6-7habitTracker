@@ -14,7 +14,7 @@ export const CreateHabitItem = () => {
       />
       <form
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] flex flex-col  bg-blue-dianne p-[30px] rounded-[15px] shadow-lg"
-        onSubmit={(f) => f}
+        onSubmit={createHabitsItem}
       >
         <button
           className="absolute top-[5px] right-[5px] text-[30px] transition duration-300 hover:scale-110 active:scale-90"
@@ -54,10 +54,7 @@ export const CreateHabitItem = () => {
             }
           />
         </div>
-        <button
-          className="p-[10px] text-blue-dianne bg-burnt-sienna font-bold rounded-[10px] transition duration-300 hover:scale-105 active:scale-90"
-          onClick={createHabitsItem}
-        >
+        <button className="p-[10px] text-blue-dianne bg-burnt-sienna font-bold rounded-[10px] transition duration-300 hover:scale-105 active:scale-90">
           Add
         </button>
       </form>

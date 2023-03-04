@@ -7,8 +7,14 @@ const HabitsContext = createContext();
 export const useHabits = () => useContext(HabitsContext);
 
 export const HabitsProvider = ({ children }) => {
-  const { habitsList, newHabitItem, setHabitsList, setCountdown, timeStop } =
-    useVars();
+  const {
+    habitsList,
+    newHabitItem,
+    setNewHabitItem,
+    setHabitsList,
+    setCountdown,
+    timeStop,
+  } = useVars();
 
   useEffect(() => {
     localStorage.setItem("day6-habit-tracker", JSON.stringify(habitsList));
@@ -50,7 +56,9 @@ export const HabitsProvider = ({ children }) => {
   const [openCreateHabitsItemBubble, setOpenCreateHabitsItemBubble] =
     useReducer((open) => !open, false);
 
-  const createHabitsItem = () => {
+  const createHabitsItem = (e) => {
+    e.preventDefault();
+
     setHabitsList([
       ...habitsList,
       {
@@ -63,6 +71,16 @@ export const HabitsProvider = ({ children }) => {
         check: false,
       },
     ]);
+
+    setNewHabitItem({
+      title: "",
+      description: "",
+      allDays: 30,
+      progressBarPercent: 0,
+      check: true,
+    });
+
+    setOpenCreateHabitsItemBubble();
   };
 
   const deleteHabitsItem = (id) => {

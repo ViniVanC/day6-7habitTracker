@@ -5,7 +5,7 @@ import { Timer } from "./Timer";
 
 export const Header = () => {
   return (
-    <header className="fixed z-50 w-[100%] py-[10px] bg-blue-dianne/10 backdrop-blur shadow-md">
+    <header className="fixed z-50 w-[100%] py-[10px] bg-blue-dianne/50 backdrop-blur-md shadow-md">
       <Container>
         <div className="flex items-center justify-between">
           <Logo />

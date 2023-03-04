@@ -13,7 +13,7 @@ export const Main = () => {
   } = useHabits();
 
   return (
-    <main className="mt-[90px] flex-grow flex-shrink basis-auto">
+    <main className="mt-[90px] mb-[30px] flex-grow flex-shrink basis-auto">
       <Container>
         <div className="">
           <div className="flex items-center justify-between mb-[20px]">

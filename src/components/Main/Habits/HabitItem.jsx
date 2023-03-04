@@ -11,13 +11,14 @@ export const HabitItem = ({
   currentDays,
   progressBarPercent,
   check,
-  markedDays,
 }) => {
   const { handleCheck, deleteHabitsItem } = useHabits();
 
   return (
     <div className="relative min-h-[200px] max-w-[200px] bg-sandy-brown text-blue-dianne p-[30px] pt-[20px] rounded-[15px] shadow-lg">
-      <h3 className="mb-[20px] text-[20px]">{title}</h3>
+      <h3 className="mb-[20px] pr-[25px] text-[20px] text-ellipsis overflow-hidden w-full whitespace-nowrap">
+        {title}
+      </h3>
       {/* progress bar */}
       <CircularProgressbar
         value={progressBarPercent}
