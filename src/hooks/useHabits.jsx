@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import { v4 } from "uuid";
 import { calcPercentagesInTheProgressBar } from "../utils";
 import { useVars } from "./useVars";
@@ -7,7 +7,7 @@ const HabitsContext = createContext();
 export const useHabits = () => useContext(HabitsContext);
 
 export const HabitsProvider = ({ children }) => {
-  const { habitsList, setHabitsList, countdown, setCountdown, timeStop } =
+  const { habitsList, newHabitItem, setHabitsList, setCountdown, timeStop } =
     useVars();
 
   useEffect(() => {
@@ -47,16 +47,19 @@ export const HabitsProvider = ({ children }) => {
     );
   };
 
+  const [openCreateHabitsItemBubble, setOpenCreateHabitsItemBubble] =
+    useReducer((open) => !open, false);
+
   const createHabitsItem = () => {
     setHabitsList([
       ...habitsList,
       {
         id: v4(),
-        title: "title",
-        description: "",
-        allDays: 30,
+        title: newHabitItem.title,
+        description: newHabitItem.description,
+        allDays: newHabitItem.allDays,
         currentDays: 0,
-        progressBarPercent: 0,
+        progressBarPercent: newHabitItem.progressBarPercent,
         check: false,
       },
     ]);
@@ -130,6 +133,8 @@ export const HabitsProvider = ({ children }) => {
         handleCheck,
         createHabitsItem,
         deleteHabitsItem,
+        openCreateHabitsItemBubble,
+        setOpenCreateHabitsItemBubble,
       }}
     >
       {children}

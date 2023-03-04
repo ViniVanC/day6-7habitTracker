@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useVars } from "../../hooks/useVars";
 
 export const Timer = () => {

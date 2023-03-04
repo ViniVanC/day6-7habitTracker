@@ -18,6 +18,15 @@ export const VarsProvider = ({ children }) => {
       },
     ]
   );
+
+  const [newHabitItem, setNewHabitItem] = useState({
+    title: "",
+    description: "",
+    allDays: 30,
+    progressBarPercent: 0,
+    check: true,
+  });
+
   const [countdown, setCountdown] = useState({
     hours: 0,
     minutes: 0,
@@ -31,6 +40,8 @@ export const VarsProvider = ({ children }) => {
       value={{
         habitsList,
         setHabitsList,
+        newHabitItem,
+        setNewHabitItem,
         countdown,
         setCountdown,
         timeStop,
