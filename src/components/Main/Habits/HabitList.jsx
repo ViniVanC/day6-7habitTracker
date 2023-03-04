@@ -8,7 +8,7 @@ export const HabitList = () => {
   return (
     <ul
       className={`flex max-[768px]:justify-center gap-[20px] flex-wrap ${
-        grid ? "" : "flex-col"
+        grid ? "flex-row-reverse" : "flex-col-reverse"
       }`}
     >
       {habitsList.map((item) => (

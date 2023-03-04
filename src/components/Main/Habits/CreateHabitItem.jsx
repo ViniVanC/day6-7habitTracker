@@ -20,7 +20,7 @@ export const CreateHabitItem = ({ submit, close }) => {
           <HiXMark />
         </button>
         <input
-          className="w-full bg-transparent text-[30px] font-bold mb-[10px] text-burnt-sienna placeholder:text-burnt-sienna"
+          className="w-full bg-transparent text-[30px] font-bold mb-[10px] text-burnt-sienna placeholder:text-burnt-sienna/50"
           type="text"
           placeholder="Title"
           value={newHabitItem.title}
@@ -29,7 +29,7 @@ export const CreateHabitItem = ({ submit, close }) => {
           }
         />
         <textarea
-          className="w-full bg-transparent text-burnt-sienna placeholder:text-burnt-sienna resize-none"
+          className="w-full bg-transparent text-burnt-sienna placeholder:text-burnt-sienna/50 resize-none"
           cols="50"
           rows="10"
           placeholder="Description..."
