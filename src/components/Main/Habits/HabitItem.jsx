@@ -36,13 +36,15 @@ export const HabitItem = ({
           text={`${currentDays}/${allDays}`}
         />
       ) : (
-        <div className="pr-[30px]">
-          <div className=""></div>
+        <div className="flex items-center gap-[10px]">
           <div className="w-full h-[5px] bg-slate-50 rounded-[20px]">
             <div
               className={`h-full bg-blue-dianne rounded-[20px] transition-all duration-300`}
               style={{ width: `${progressBarPercent}%` }}
             ></div>
+          </div>
+          <div className="text-[20px]">
+            {currentDays}/{allDays}
           </div>
         </div>
       )}
@@ -55,7 +57,7 @@ export const HabitItem = ({
         {check && <FaCheck className="text-sandy-brown" />}
       </button>
 
-      <div className="relative right-[-10px] w-min h-min mt-[20px] ml-auto p-[10px] rounded-[5px] bg-blue-dianne text-sandy-brown flex items-center gap-[15px]">
+      <div className="relative right-[-10px] w-min h-min mt-[10px] ml-auto p-[10px] rounded-[5px] bg-blue-dianne text-sandy-brown flex items-center gap-[15px]">
         <button
           className=" transition duration-300 hover:scale-110 active:scale-90"
           onClick={() => deleteHabitsItem(id)}
