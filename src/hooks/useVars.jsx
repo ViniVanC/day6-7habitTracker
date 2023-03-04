@@ -37,6 +37,7 @@ export const VarsProvider = ({ children }) => {
 
   const [openCreateHabitsItemBubble, setOpenCreateHabitsItemBubble] =
     useReducer((open) => !open, false);
+
   const [openEditHabitsItemBubble, setOpenEditHabitsItemBubble] = useReducer(
     (open) => !open,
     false

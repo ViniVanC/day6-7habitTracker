@@ -20,14 +20,19 @@ export const HabitItem = ({
     editHabitsItem,
     funkOpenEditHabitsItemBubble,
   } = useHabits();
-  const { grid, setOpenEditHabitsItemBubble } = useVars();
+  const {
+    grid,
+    setOpenEditHabitsItemBubble,
+    // openEditStingsBubble,
+    // setOpenEditStingsBubble,
+  } = useVars();
 
   return (
     <div
       className={
         grid
-          ? "relative min-h-[200px] max-w-[200px] bg-sandy-brown text-blue-dianne p-[30px] pt-[20px] rounded-[15px] shadow-lg"
-          : "relative w-[100%] bg-sandy-brown text-blue-dianne p-[30px] pt-[20px] rounded-[15px] shadow-lg"
+          ? "relative min-h-[200px] max-w-[200px] bg-sandy-brown text-blue-dianne p-[30px] pb-[10px] pt-[20px] rounded-[15px] shadow-lg"
+          : "relative w-[100%] bg-sandy-brown text-blue-dianne p-[30px] pb-[10px] pt-[20px] rounded-[15px] shadow-lg"
       }
     >
       <h3 className="mb-[25px] pr-[25px] text-[20px] text-ellipsis overflow-hidden w-full whitespace-nowrap">
@@ -58,10 +63,8 @@ export const HabitItem = ({
       >
         {check && <FaCheck className="text-sandy-brown" />}
       </button>
-      <button className="absolute bottom-[25px] right-[25px] text-[20px] transition duration-300 hover:scale-110 active:scale-90">
-        <BsThreeDotsVertical />
-      </button>
-      <div className="absolute bottom-[20px] right-[45px] w-min h-min p-[10px] rounded-[5px] bg-blue-dianne text-sandy-brown flex items-center gap-[15px]">
+
+      <div className="relative right-[-10px] w-min h-min mt-[20px] ml-auto p-[10px] rounded-[5px] bg-blue-dianne text-sandy-brown flex items-center gap-[15px]">
         <button
           className=" transition duration-300 hover:scale-110 active:scale-90"
           onClick={() => deleteHabitsItem(id)}
