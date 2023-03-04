@@ -35,3 +35,21 @@ a {
     fill: $blue-dianne;
   }
 }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  padding: 0;
+  background-color: $burnt-sienna;
+  border-radius: 5px;
+  height: 5px;
+  width: 100%;
+  cursor: col-resize;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ffffff;
+  }
+}
