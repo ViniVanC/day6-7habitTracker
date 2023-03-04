@@ -1,57 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { v4 } from "uuid";
+import { calcPercentagesInTheProgressBar } from "../utils";
+import { useVars } from "./useVars";
 
 const HabitsContext = createContext();
 export const useHabits = () => useContext(HabitsContext);
 
 export const HabitsProvider = ({ children }) => {
-  const [habitsList, setHabitsList] = useState(
-    JSON.parse(localStorage.getItem("day6-habit-tracker")) || [
-      {
-        id: v4(),
-        title: "title",
-        description: "",
-        allDays: 30,
-        currentDays: 2,
-        progressBarPercent: 0,
-        check: true,
-      },
-      {
-        id: v4(),
-        title: "title",
-        description: "",
-        allDays: 30,
-        currentDays: 16,
-        progressBarPercent: 0,
-        check: false,
-      },
-      {
-        id: v4(),
-        title: "title",
-        description: "",
-        allDays: 30,
-        currentDays: 5,
-        progressBarPercent: 0,
-        check: false,
-      },
-      {
-        id: v4(),
-        title: "title",
-        description: "",
-        allDays: 30,
-        currentDays: 0,
-        progressBarPercent: 0,
-        check: false,
-      },
-    ]
-  );
-  const [countdown, setCountdown] = useState({
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  const timeStop = { hours: 23, minutes: 59, seconds: 59 };
+  const { habitsList, setHabitsList, countdown, setCountdown, timeStop } =
+    useVars();
 
   useEffect(() => {
     localStorage.setItem("day6-habit-tracker", JSON.stringify(habitsList));
@@ -68,10 +25,6 @@ export const HabitsProvider = ({ children }) => {
       }))
     );
   }, []);
-
-  function calcPercentagesInTheProgressBar(allDays, currentDays) {
-    return Math.floor((100 / allDays) * currentDays);
-  }
 
   const handleCheck = (id) => {
     setHabitsList(
@@ -144,7 +97,7 @@ export const HabitsProvider = ({ children }) => {
 
       // Встановлюємо час на опівночі
       const midnight = new Date(now);
-      midnight.setHours(24, 0, 0, 0);
+      midnight.setHours(timeStop.hours, timeStop.minutes, timeStop.seconds, 0);
 
       // Обчислюємо залишок часу
       const remainingTime = midnight.getTime() - now.getTime();
@@ -174,9 +127,6 @@ export const HabitsProvider = ({ children }) => {
   return (
     <HabitsContext.Provider
       value={{
-        countdown,
-        habitsList,
-        setHabitsList,
         handleCheck,
         createHabitsItem,
         deleteHabitsItem,

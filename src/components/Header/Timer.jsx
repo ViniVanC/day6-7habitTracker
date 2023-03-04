@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useHabits } from "../../hooks/useHabits";
+import { useVars } from "../../hooks/useVars";
 
 export const Timer = () => {
-  const { countdown } = useHabits();
+  const { countdown } = useVars();
   return (
     <div className="text-[20px] font-bold">
       {countdown.hours}:{countdown.minutes}:{countdown.seconds}

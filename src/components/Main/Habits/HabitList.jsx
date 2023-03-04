@@ -1,9 +1,9 @@
 import React from "react";
-import { useHabits } from "../../../hooks/useHabits";
+import { useVars } from "../../../hooks/useVars";
 import { HabitItem } from "./HabitItem";
 
 export const HabitList = () => {
-  const { habitsList } = useHabits();
+  const { habitsList } = useVars();
 
   return (
     <ul className="flex items-center gap-[20px] flex-wrap">
