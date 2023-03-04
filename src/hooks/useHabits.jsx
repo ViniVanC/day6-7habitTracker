@@ -14,6 +14,8 @@ export const HabitsProvider = ({ children }) => {
     setHabitsList,
     setCountdown,
     timeStop,
+    openCreateHabitsItemBubble,
+    setOpenCreateHabitsItemBubble,
   } = useVars();
 
   useEffect(() => {
@@ -52,9 +54,6 @@ export const HabitsProvider = ({ children }) => {
       )
     );
   };
-
-  const [openCreateHabitsItemBubble, setOpenCreateHabitsItemBubble] =
-    useReducer((open) => !open, false);
 
   const createHabitsItem = (e) => {
     e.preventDefault();

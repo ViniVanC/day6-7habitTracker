@@ -3,10 +3,14 @@ import { useVars } from "../../../hooks/useVars";
 import { HabitItem } from "./HabitItem";
 
 export const HabitList = () => {
-  const { habitsList } = useVars();
+  const { habitsList, grid } = useVars();
 
   return (
-    <ul className="flex items-center gap-[20px] flex-wrap">
+    <ul
+      className={`flex items-center max-[768px]:justify-center gap-[20px] flex-wrap ${
+        grid ? "" : "flex-col"
+      }`}
+    >
       {habitsList.map((item) => (
         <HabitItem
           key={item.id}

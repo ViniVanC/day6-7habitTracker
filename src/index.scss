@@ -26,6 +26,10 @@ a {
   }
 }
 
+.lock {
+  overflow: hidden;
+}
+
 .CircularProgressbar {
   .CircularProgressbar-path {
     stroke: $blue-dianne;

@@ -4,16 +4,13 @@ import { useVars } from "../../../hooks/useVars";
 import { HiXMark } from "react-icons/hi2";
 
 export const CreateHabitItem = () => {
-  const { createHabitsItem, setOpenCreateHabitsItemBubble } = useHabits();
-  const { newHabitItem, setNewHabitItem } = useVars();
+  const { createHabitsItem } = useHabits();
+  const { newHabitItem, setNewHabitItem, setOpenCreateHabitsItemBubble } =
+    useVars();
   return (
     <>
-      <div
-        className="absolute top-0 left-0 z-[60] bg-black/30 w-[100vw] h-[100vh] backdrop-blur-md"
-        onClick={setOpenCreateHabitsItemBubble}
-      />
       <form
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] flex flex-col  bg-blue-dianne p-[30px] rounded-[15px] shadow-lg"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] max-w-[524px] w-full flex flex-col  bg-blue-dianne p-[30px] rounded-[15px] shadow-lg"
         onSubmit={createHabitsItem}
       >
         <button
@@ -23,7 +20,7 @@ export const CreateHabitItem = () => {
           <HiXMark />
         </button>
         <input
-          className="bg-transparent text-[30px] font-bold mb-[10px] text-burnt-sienna placeholder:text-burnt-sienna"
+          className="w-full bg-transparent text-[30px] font-bold mb-[10px] text-burnt-sienna placeholder:text-burnt-sienna"
           type="text"
           placeholder="Title"
           value={newHabitItem.title}
@@ -32,7 +29,7 @@ export const CreateHabitItem = () => {
           }
         />
         <textarea
-          className="bg-transparent text-burnt-sienna placeholder:text-burnt-sienna resize-none"
+          className="w-full bg-transparent text-burnt-sienna placeholder:text-burnt-sienna resize-none"
           cols="50"
           rows="10"
           placeholder="Description..."
@@ -58,6 +55,10 @@ export const CreateHabitItem = () => {
           Add
         </button>
       </form>
+      <div
+        className="absolute top-0 left-0 z-[59] bg-black/30 w-[100vw] h-[100vh] backdrop-blur-md"
+        onClick={setOpenCreateHabitsItemBubble}
+      />
     </>
   );
 };
