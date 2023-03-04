@@ -59,18 +59,33 @@ export const HabitsProvider = ({ children }) => {
   const createHabitsItem = (e) => {
     e.preventDefault();
 
-    setHabitsList([
-      ...habitsList,
-      {
-        id: v4(),
-        title: newHabitItem.title,
-        description: newHabitItem.description,
-        allDays: newHabitItem.allDays,
-        currentDays: 0,
-        progressBarPercent: newHabitItem.progressBarPercent,
-        check: false,
-      },
-    ]);
+    setHabitsList(
+      newHabitItem.title !== ""
+        ? [
+            ...habitsList,
+            {
+              id: v4(),
+              title: newHabitItem.title,
+              description: newHabitItem.description,
+              allDays: newHabitItem.allDays,
+              currentDays: 0,
+              progressBarPercent: newHabitItem.progressBarPercent,
+              check: false,
+            },
+          ]
+        : [
+            ...habitsList,
+            {
+              id: v4(),
+              title: "Title",
+              description: newHabitItem.description,
+              allDays: newHabitItem.allDays,
+              currentDays: 0,
+              progressBarPercent: newHabitItem.progressBarPercent,
+              check: false,
+            },
+          ]
+    );
 
     setNewHabitItem({
       title: "",
@@ -110,14 +125,23 @@ export const HabitsProvider = ({ children }) => {
     setHabitsList(
       habitsList.map((item) =>
         item.id === newHabitItem.id
-          ? {
-              ...item,
-              title: newHabitItem.title,
-              description: newHabitItem.description,
-              allDays: newHabitItem.allDays,
-              currentDays: newHabitItem.currentDays,
-              progressBarPercent: newHabitItem.progressBarPercent,
-            }
+          ? newHabitItem.title !== ""
+            ? {
+                ...item,
+                title: newHabitItem.title,
+                description: newHabitItem.description,
+                allDays: newHabitItem.allDays,
+                currentDays: newHabitItem.currentDays,
+                progressBarPercent: newHabitItem.progressBarPercent,
+              }
+            : {
+                ...item,
+                title: "Title",
+                description: newHabitItem.description,
+                allDays: newHabitItem.allDays,
+                currentDays: newHabitItem.currentDays,
+                progressBarPercent: newHabitItem.progressBarPercent,
+              }
           : item
       )
     );

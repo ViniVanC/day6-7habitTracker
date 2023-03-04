@@ -14,18 +14,9 @@ export const HabitItem = ({
   progressBarPercent,
   check,
 }) => {
-  const {
-    handleCheck,
-    deleteHabitsItem,
-    editHabitsItem,
-    funkOpenEditHabitsItemBubble,
-  } = useHabits();
-  const {
-    grid,
-    setOpenEditHabitsItemBubble,
-    // openEditStingsBubble,
-    // setOpenEditStingsBubble,
-  } = useVars();
+  const { handleCheck, deleteHabitsItem, funkOpenEditHabitsItemBubble } =
+    useHabits();
+  const { grid, setOpenEditHabitsItemBubble } = useVars();
 
   return (
     <div
