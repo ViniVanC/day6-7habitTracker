@@ -157,6 +157,14 @@ export const HabitsProvider = ({ children }) => {
     setOpenEditHabitsItemBubble();
   };
 
+  function openFullInfo(id) {
+    setHabitsList(
+      habitsList.map((item) =>
+        item.id === id ? { ...item, openInfo: !item.openInfo } : item
+      )
+    );
+  }
+
   // функція викличеться коли таймер дійде до кінця. функція знімає у всіх елементів check, та фіксує currentDays
   function remind() {
     setHabitsList(
@@ -227,6 +235,7 @@ export const HabitsProvider = ({ children }) => {
         openCreateHabitsItemBubble,
         setOpenCreateHabitsItemBubble,
         funkOpenEditHabitsItemBubble,
+        openFullInfo,
       }}
     >
       {children}

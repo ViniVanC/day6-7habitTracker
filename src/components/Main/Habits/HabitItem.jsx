@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
-import { FaCheck, FaPen, FaTrash } from "react-icons/fa";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaBook, FaCheck, FaPen, FaTrash } from "react-icons/fa";
 import { useHabits } from "../../../hooks/useHabits";
 import { useVars } from "../../../hooks/useVars";
+import { ShowFullInfo } from "./ShowFullInfo";
 
 export const HabitItem = ({
   id,
@@ -13,9 +13,14 @@ export const HabitItem = ({
   currentDays,
   progressBarPercent,
   check,
+  openInfo,
 }) => {
-  const { handleCheck, deleteHabitsItem, funkOpenEditHabitsItemBubble } =
-    useHabits();
+  const {
+    handleCheck,
+    deleteHabitsItem,
+    funkOpenEditHabitsItemBubble,
+    openFullInfo,
+  } = useHabits();
   const { grid, setOpenEditHabitsItemBubble } = useVars();
 
   return (
@@ -59,10 +64,10 @@ export const HabitItem = ({
 
       <div className="relative right-[-10px] w-min h-min mt-[10px] ml-auto p-[10px] rounded-[5px] bg-blue-dianne text-sandy-brown flex items-center gap-[15px]">
         <button
-          className=" transition duration-300 hover:scale-110 active:scale-90"
-          onClick={() => deleteHabitsItem(id)}
+          className="transition duration-300 hover:scale-110 active:scale-90"
+          onClick={() => openFullInfo(id)}
         >
-          <FaTrash />
+          <FaBook />
         </button>
         <button
           className="transition duration-300 hover:scale-110 active:scale-90"
@@ -73,7 +78,26 @@ export const HabitItem = ({
         >
           <FaPen />
         </button>
+        <button
+          className=" transition duration-300 hover:scale-110 active:scale-90"
+          onClick={() => deleteHabitsItem(id)}
+        >
+          <FaTrash />
+        </button>
       </div>
+
+      {openInfo ? (
+        <ShowFullInfo
+          id={id}
+          title={title}
+          description={description}
+          allDays={allDays}
+          currentDays={currentDays}
+          progressBarPercent={progressBarPercent}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

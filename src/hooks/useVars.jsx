@@ -15,6 +15,7 @@ export const VarsProvider = ({ children }) => {
         currentDays: 2,
         progressBarPercent: 0,
         check: true,
+        openInfo: false,
       },
     ]
   );
@@ -25,6 +26,7 @@ export const VarsProvider = ({ children }) => {
     allDays: 30,
     progressBarPercent: 0,
     check: true,
+    openInfo: false,
   });
 
   const [countdown, setCountdown] = useState({
