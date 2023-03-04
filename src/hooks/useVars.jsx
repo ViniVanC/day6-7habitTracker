@@ -37,6 +37,10 @@ export const VarsProvider = ({ children }) => {
 
   const [openCreateHabitsItemBubble, setOpenCreateHabitsItemBubble] =
     useReducer((open) => !open, false);
+  const [openEditHabitsItemBubble, setOpenEditHabitsItemBubble] = useReducer(
+    (open) => !open,
+    false
+  );
 
   if (openCreateHabitsItemBubble) {
     document.body.classList.add("lock");
@@ -60,6 +64,8 @@ export const VarsProvider = ({ children }) => {
         setGrid,
         openCreateHabitsItemBubble,
         setOpenCreateHabitsItemBubble,
+        openEditHabitsItemBubble,
+        setOpenEditHabitsItemBubble,
       }}
     >
       {children}

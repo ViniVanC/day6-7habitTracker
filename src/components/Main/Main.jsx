@@ -1,5 +1,6 @@
 import React from "react";
 import { FaGripHorizontal, FaGripLines, FaPlus } from "react-icons/fa";
+import { useHabits } from "../../hooks/useHabits";
 import { useVars } from "../../hooks/useVars";
 import { Container } from "../Container";
 import { CreateHabitItem } from "./Habits/CreateHabitItem";
@@ -9,9 +10,12 @@ export const Main = () => {
   const {
     openCreateHabitsItemBubble,
     setOpenCreateHabitsItemBubble,
+    openEditHabitsItemBubble,
+    setOpenEditHabitsItemBubble,
     grid,
     setGrid,
   } = useVars();
+  const { createHabitsItem, editHabitsItem } = useHabits();
 
   return (
     <main className="mt-[90px] mb-[30px] flex-grow flex-shrink basis-auto">
@@ -33,7 +37,22 @@ export const Main = () => {
           </div>
           <hr />
           <HabitList />
-          {openCreateHabitsItemBubble ? <CreateHabitItem /> : ""}
+          {openCreateHabitsItemBubble ? (
+            <CreateHabitItem
+              submit={createHabitsItem}
+              close={setOpenCreateHabitsItemBubble}
+            />
+          ) : (
+            ""
+          )}
+          {openEditHabitsItemBubble ? (
+            <CreateHabitItem
+              submit={editHabitsItem}
+              close={setOpenEditHabitsItemBubble}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </Container>
     </main>

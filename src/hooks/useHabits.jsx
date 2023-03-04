@@ -16,6 +16,7 @@ export const HabitsProvider = ({ children }) => {
     timeStop,
     openCreateHabitsItemBubble,
     setOpenCreateHabitsItemBubble,
+    setOpenEditHabitsItemBubble,
   } = useVars();
 
   useEffect(() => {
@@ -86,6 +87,53 @@ export const HabitsProvider = ({ children }) => {
     setHabitsList(habitsList.filter((item) => item.id !== id));
   };
 
+  function funkOpenEditHabitsItemBubble(id) {
+    habitsList.map((item) =>
+      item.id === id
+        ? setNewHabitItem({
+            ...item,
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            allDays: item.allDays,
+            currentDays: item.currentDays,
+            progressBarPercent: item.progressBarPercent,
+          })
+        : newHabitItem
+    );
+  }
+
+  const editHabitsItem = (e) => {
+    e.preventDefault();
+    console.log(newHabitItem);
+
+    setHabitsList(
+      habitsList.map((item) =>
+        item.id === newHabitItem.id
+          ? {
+              ...item,
+              title: newHabitItem.title,
+              description: newHabitItem.description,
+              allDays: newHabitItem.allDays,
+              currentDays: newHabitItem.currentDays,
+              progressBarPercent: newHabitItem.progressBarPercent,
+            }
+          : item
+      )
+    );
+
+    setNewHabitItem({
+      title: "",
+      description: "",
+      allDays: 30,
+      progressBarPercent: 0,
+      check: true,
+    });
+
+    setOpenEditHabitsItemBubble();
+  };
+
+  // функція викличеться коли таймер дійде до кінця. функція знімає у всіх елементів check, та фіксує currentDays
   function remind() {
     setHabitsList(
       habitsList.map((item) =>
@@ -110,6 +158,7 @@ export const HabitsProvider = ({ children }) => {
     );
   }
 
+  // таймер
   useEffect(() => {
     const interval = setInterval(() => {
       // Отримуємо поточний час
@@ -150,8 +199,10 @@ export const HabitsProvider = ({ children }) => {
         handleCheck,
         createHabitsItem,
         deleteHabitsItem,
+        editHabitsItem,
         openCreateHabitsItemBubble,
         setOpenCreateHabitsItemBubble,
+        funkOpenEditHabitsItemBubble,
       }}
     >
       {children}

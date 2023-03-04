@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
-import { FaCheck, FaTrash } from "react-icons/fa";
+import { FaCheck, FaPen, FaTrash } from "react-icons/fa";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { useHabits } from "../../../hooks/useHabits";
 import { useVars } from "../../../hooks/useVars";
 
@@ -13,8 +14,13 @@ export const HabitItem = ({
   progressBarPercent,
   check,
 }) => {
-  const { handleCheck, deleteHabitsItem } = useHabits();
-  const { grid } = useVars();
+  const {
+    handleCheck,
+    deleteHabitsItem,
+    editHabitsItem,
+    funkOpenEditHabitsItemBubble,
+  } = useHabits();
+  const { grid, setOpenEditHabitsItemBubble } = useVars();
 
   return (
     <div
@@ -52,12 +58,26 @@ export const HabitItem = ({
       >
         {check && <FaCheck className="text-sandy-brown" />}
       </button>
-      <button
-        className="absolute bottom-[25px] right-[25px] transition duration-300 hover:scale-110 active:scale-90"
-        onClick={() => deleteHabitsItem(id)}
-      >
-        <FaTrash />
+      <button className="absolute bottom-[25px] right-[25px] text-[20px] transition duration-300 hover:scale-110 active:scale-90">
+        <BsThreeDotsVertical />
       </button>
+      <div className="absolute bottom-[20px] right-[45px] w-min h-min p-[10px] rounded-[5px] bg-blue-dianne text-sandy-brown flex items-center gap-[15px]">
+        <button
+          className=" transition duration-300 hover:scale-110 active:scale-90"
+          onClick={() => deleteHabitsItem(id)}
+        >
+          <FaTrash />
+        </button>
+        <button
+          className="transition duration-300 hover:scale-110 active:scale-90"
+          onClick={() => {
+            setOpenEditHabitsItemBubble();
+            funkOpenEditHabitsItemBubble(id);
+          }}
+        >
+          <FaPen />
+        </button>
+      </div>
     </div>
   );
 };

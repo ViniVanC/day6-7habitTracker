@@ -3,7 +3,7 @@ import { useHabits } from "../../../hooks/useHabits";
 import { useVars } from "../../../hooks/useVars";
 import { HiXMark } from "react-icons/hi2";
 
-export const CreateHabitItem = () => {
+export const CreateHabitItem = ({ submit, close }) => {
   const { createHabitsItem } = useHabits();
   const { newHabitItem, setNewHabitItem, setOpenCreateHabitsItemBubble } =
     useVars();
@@ -11,11 +11,11 @@ export const CreateHabitItem = () => {
     <>
       <form
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] max-w-[524px] w-full flex flex-col  bg-blue-dianne p-[30px] rounded-[15px] shadow-lg"
-        onSubmit={createHabitsItem}
+        onSubmit={submit}
       >
         <button
           className="absolute top-[5px] right-[5px] text-[30px] transition duration-300 hover:scale-110 active:scale-90"
-          onClick={setOpenCreateHabitsItemBubble}
+          onClick={close}
         >
           <HiXMark />
         </button>
