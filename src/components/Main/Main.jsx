@@ -20,7 +20,7 @@ export const Main = () => {
   return (
     <main className="mt-[90px] mb-[30px] flex-grow flex-shrink basis-auto">
       <Container>
-        <div className="">
+        <div>
           <div className="flex items-center justify-between mb-[20px]">
             <h1 className="text-[30px] font-bold">Habit Tracker</h1>
             <div className="flex items-center gap-[20px]">
@@ -35,7 +35,7 @@ export const Main = () => {
               </button>
             </div>
           </div>
-          <hr />
+          <hr className="mb-[20px]" />
           <HabitList />
           {openCreateHabitsItemBubble ? (
             <CreateHabitItem
