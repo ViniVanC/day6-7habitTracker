@@ -51,6 +51,7 @@ export const HabitItem = ({
             <button
               className="transition duration-300 hover:scale-110 active:scale-90"
               onClick={() => {
+                window.scroll(0, 0);
                 setOpenEditHabitsItemBubble();
                 funkOpenEditHabitsItemBubble(id);
               }}
@@ -77,6 +78,7 @@ export const HabitItem = ({
             <button
               className="transition duration-300 hover:scale-110 active:scale-90"
               onClick={() => {
+                window.scroll(0, 0);
                 setOpenEditHabitsItemBubble();
                 funkOpenEditHabitsItemBubble(id);
               }}

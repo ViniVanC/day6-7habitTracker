@@ -29,7 +29,10 @@ export const Main = () => {
               </button>
               <button
                 className="w-[50px] h-[50px] flex items-center justify-center text-[30px] border-[3px] border-solid rounded-[50%] transition duration-300 hover:scale-110 active:scale-90"
-                onClick={setOpenCreateHabitsItemBubble}
+                onClick={() => {
+                  setOpenCreateHabitsItemBubble();
+                  window.scroll(0, 0);
+                }}
               >
                 <FaPlus />
               </button>
