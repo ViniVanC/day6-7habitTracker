@@ -7,7 +7,7 @@ export const HabitList = () => {
 
   return (
     <ul
-      className={`flex max-[768px]:justify-center gap-[20px] flex-wrap ${
+      className={`flex justify-end max-[768px]:justify-center gap-[20px] flex-wrap ${
         grid ? "flex-row-reverse" : "flex-col-reverse"
       }`}
     >
